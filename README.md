@@ -1,6 +1,4 @@
 projecteuler
 ============
 
-Project Euler solutions and supplemental code. SPOILER WARNING!
-
-(I used to have 329 solved problems, but deleted my account. That may very well be a lie, unless I actually prove it.)
+Project Euler solutions and supplemental code. I used to have an account with 329 solved problems, but I deleted it because I can't do nearly as well now. Slowly working my way back up...
