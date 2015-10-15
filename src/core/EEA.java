@@ -53,7 +53,7 @@ public class EEA {
 		return BigInteger.ZERO;
 	}
 
-	// Chinese remaineder theorem.
+	// Chinese remainder theorem.
 	public static BigInteger crt(long a1, long m1, long a2, long m2) {
 		BigInteger b1 = inv(m2, m1);
 		BigInteger b2 = inv(m1, m2);
