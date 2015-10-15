@@ -1,4 +1,4 @@
-package solutions000;
+package s000;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import core.IOLib;
 import core.MathLib;
 import core.NTLib;
 
-public class P020_29 {
+public class P020_029 {
 	static void p020() {
 		BigInteger n = MathLib.fac(100);
 		Euler.printAnswer(20, MathLib.digitSum(n));
@@ -30,7 +30,7 @@ public class P020_29 {
 	}
 
 	static void p022() {
-		Scanner in = IOLib.scanner("022.txt");
+		Scanner in = IOLib.scanner("data/022.txt");
 		String line = in.nextLine();
 		IOLib.close(in);
 		ArrayList<String> ss = new ArrayList<String>();
@@ -168,7 +168,7 @@ public class P020_29 {
 		HashSet<BigInteger> S = new HashSet<BigInteger>();
 		for (int a = 2; a <= 100; a++) {
 			for (int b = 2; b <= 100; b++) {
-				S.add(MathLib.big(a).pow(b));
+				S.add(BigInteger.valueOf(a).pow(b));
 			}
 		}
 		Euler.printAnswer(29, S.size());

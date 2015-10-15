@@ -1,4 +1,4 @@
-package solutions000;
+package s000;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ import core.IOLib;
 import core.MathLib;
 import core.PList;
 
-public class P000_09 {
+public class P000_009 {
 	static void p000() {
 		Euler.printAnswer(0, "Welcome to Project Euler!");
 	}
@@ -84,7 +84,7 @@ public class P000_09 {
 	}
 
 	static void p008() {
-		Scanner in = IOLib.scanner("008.txt");
+		Scanner in = IOLib.scanner("data/008.txt");
 		int[] a = new int[1000];
 		int i = 0;
 		while (in.hasNextLine()) {

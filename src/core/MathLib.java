@@ -3,21 +3,6 @@ package core;
 import java.math.BigInteger;
 
 public class MathLib {
-	// Create BigInteger.
-	public static BigInteger big(long n) {
-		return BigInteger.valueOf(n);
-	}
-
-	// Tests BigInteger a < b.
-	public static boolean lt(BigInteger a, BigInteger b) {
-		return a.compareTo(b) < 0;
-	}
-
-	// Tests BigInteger a > b.
-	public static boolean gt(BigInteger a, BigInteger b) {
-		return a.compareTo(b) > 0;
-	}
-
 	// 32-bit exponent. b != 0, e >= 0.
 	public static int pow32(long b, int e) {
 		int ans = 1;
@@ -58,7 +43,7 @@ public class MathLib {
 	public static BigInteger fac(int n) {
 		BigInteger ans = BigInteger.ONE;
 		for (; n >= 2; n--) {
-			ans = ans.multiply(big(n));
+			ans = ans.multiply(BigInteger.valueOf(n));
 		}
 		return ans;
 	}

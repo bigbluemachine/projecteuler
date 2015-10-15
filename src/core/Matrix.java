@@ -11,6 +11,11 @@ public class Matrix {
 		data = new long[s][s];
 	}
 
+	public Matrix(long[][] x) {
+		this.size = x.length;
+		this.data = x;
+	}
+
 	public static Matrix identity(int s) {
 		long[][] m = new long[s][s];
 
@@ -19,11 +24,6 @@ public class Matrix {
 		}
 
 		return new Matrix(m);
-	}
-
-	private Matrix(long[][] x) {
-		this.size = x.length;
-		this.data = x;
 	}
 
 	private static Matrix copyOf(long[][] x) {
@@ -111,7 +111,7 @@ public class Matrix {
 	}
 
 	// (ab + c) % m
-	private static long term(long a, long b, long c, long mod) {
+	public static long term(long a, long b, long c, long mod) {
 		return big(c).add(big(a).multiply(big(b))).mod(big(mod)).longValue();
 	}
 

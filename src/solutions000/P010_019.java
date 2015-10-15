@@ -1,8 +1,8 @@
-package solutions000;
+package s000;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import core.Euler;
@@ -12,9 +12,9 @@ import core.NTLib;
 import core.PFac;
 import core.PList;
 
-public class P010_19 {
+public class P010_019 {
 	static void p010() {
-		LinkedList<Integer> ps = NTLib.simpleList(2000000);
+		List<Integer> ps = NTLib.primeList(2000000);
 		long ans = 0;
 		for (int p : ps) {
 			ans += p;
@@ -23,7 +23,7 @@ public class P010_19 {
 	}
 
 	static void p011() {
-		Scanner in = IOLib.scanner("011.txt");
+		Scanner in = IOLib.scanner("data/011.txt");
 		int[][] a = new int[20][20];
 		for (int i = 0; i < 20; i++) {
 			String[] ns = in.nextLine().split(" ");
@@ -56,7 +56,7 @@ public class P010_19 {
 		PList p = new PList();
 		long ans = 0;
 		for (int i = 2;; i++) {
-			if (p.ps.getLast() < i) {
+			if (p.getLast() < i) {
 				p.expand();
 			}
 			PFac a = PFac.make(i - 1, p.ps);
@@ -72,7 +72,7 @@ public class P010_19 {
 	}
 
 	static void p013() {
-		Scanner in = IOLib.scanner("013.txt");
+		Scanner in = IOLib.scanner("data/013.txt");
 		BigInteger ans = BigInteger.ZERO;
 		for (int i = 0; i < 100; i++) {
 			ans = ans.add(new BigInteger(in.nextLine()));
@@ -118,7 +118,7 @@ public class P010_19 {
 	}
 
 	static void p016() {
-		BigInteger n = MathLib.big(2).pow(1000);
+		BigInteger n = BigInteger.valueOf(2).pow(1000);
 		Euler.printAnswer(16, MathLib.digitSum(n));
 	}
 
@@ -131,7 +131,7 @@ public class P010_19 {
 	}
 
 	static void p018() {
-		Scanner in = IOLib.scanner("018.txt");
+		Scanner in = IOLib.scanner("data/018.txt");
 		int[][] a = new int[15][];
 		int[][] f = new int[15][];
 		for (int i = 0; i < 15; i++) {

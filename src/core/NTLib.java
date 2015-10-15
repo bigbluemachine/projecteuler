@@ -1,7 +1,11 @@
 package core;
 
+import static core.MathLib.gcd32;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.List;
 
 public class NTLib {
 	// Prime sieve; simple (slow) method. n >= 2.
@@ -23,12 +27,41 @@ public class NTLib {
 		return p;
 	}
 
-	// Prime list generated from sieve. n >= 2.
-	public static LinkedList<Integer> simpleList(int n) {
-		boolean[] p = simpleSieve(n);
-		LinkedList<Integer> a = new LinkedList<Integer>();
+	// Prime sieve; simple (slow) method. n >= 2.
+	// Packed bits.
+	public static long[] bitSieve(int n) {
+		int count = n / 63 + 1;
+		long[] p = new long[count];
 
-		for (int i = 2; i < n; i++) {
+		p[0] = 0xaaaaaaaaaaaaaaacL;
+		for (int i = 1; i < count; i++) {
+			p[i] = 0xaaaaaaaaaaaaaaaaL >> (i & 1);
+		}
+
+		for (int i = 3; i * i < n; i += 2) {
+			if ((p[i / 63] & (1L << (i % 63))) == 0) {
+				continue;
+			}
+			for (int j = i * i; j < n; j += i) {
+				p[j / 63] &= ~(1L << (j % 63));
+			}
+		}
+
+		return p;
+	}
+
+	// Convenience for bit sieve.
+	public static boolean isPrime(long[] p, int n) {
+		return (p[n / 63] & (1L << (n % 63))) > 0;
+	}
+
+	// Prime list generated from sieve. n >= 3.
+	public static List<Integer> primeList(int n) {
+		boolean[] p = simpleSieve(n);
+		ArrayList<Integer> a = new ArrayList<Integer>();
+
+		a.add(2);
+		for (int i = 3; i < n; i += 2) {
 			if (p[i]) {
 				a.add(i);
 			}
@@ -40,7 +73,7 @@ public class NTLib {
 	// Prime sieve with offset. Supply enough primes to produce answer.
 	// m >= 0, n >= 0.
 	// p[i] === m + i is prime
-	public static boolean[] offsetSieve(long m, int n, LinkedList<Integer> ps) {
+	public static boolean[] offsetSieve(long m, int n, List<Integer> ps) {
 		boolean[] p = new boolean[n];
 		Arrays.fill(p, true);
 
@@ -100,12 +133,41 @@ public class NTLib {
 		for (int i = 2; i * i < n; i++) {
 			if (p[i]) {
 				for (int j = i, k = i * i; k < n; j++, k += i) {
-					int l = MathLib.gcd32(i, j);
+					int l = gcd32(i, j);
 					t[k] = (int) (((long) t[i] * t[j] * l) / t[l]);
 				}
 			}
 		}
 
 		return t;
+	}
+
+	// Miller-Rabin test. (Needs fixing!)
+	// Makes k passes. n must be odd.
+	public static boolean MillerRabin(long n, int k) {
+		long d = n - 1;
+		int s = 1;
+		while (((1L << s) & d) == 0) {
+			s++;
+		}
+		d >>= s;
+		L: while (k-- > 0) {
+			long a = (long) (Math.random() * (n - 3)) + 2;
+			long x = BigInteger.valueOf(a).modPow(BigInteger.valueOf(d), BigInteger.valueOf(n)).longValue();
+			if (x == 1 || x == n - 1) {
+				continue;
+			}
+			for (int r = 1; r < s; r++) {
+				x = BigInteger.valueOf(x).modPow(BigInteger.valueOf(2), BigInteger.valueOf(n)).longValue();
+				if (x == 1) {
+					return false;
+				}
+				if (x == n - 1) {
+					continue L;
+				}
+			}
+			return false;
+		}
+		return true;
 	}
 }

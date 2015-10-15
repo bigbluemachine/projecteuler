@@ -1,24 +1,30 @@
 package core;
 
+import static core.MathLib.pow32;
+import static core.MathLib.pow64;
+
 import java.math.BigInteger;
-import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class PFac {
 	public int twos;
-	public TreeMap<Integer, Integer> M;
+	public Map<Integer, Integer> M;
 
 	public PFac() {
 		twos = 0;
 		M = new TreeMap<Integer, Integer>();
 	}
 
-	public PFac(int t, TreeMap<Integer, Integer> m) {
+	private PFac(int t, TreeMap<Integer, Integer> m) {
 		twos = t;
 		M = m;
 	}
 
-	public static PFac make(long n, LinkedList<Integer> ps) {
+	public static PFac make(long n, List<Integer> ps) {
 		PFac pf = new PFac();
 
 		while ((n & 1) == 0) {
@@ -77,7 +83,7 @@ public class PFac {
 	public int intValue() {
 		int ans = 1;
 		for (int p : M.keySet()) {
-			ans *= MathLib.pow32(p, M.get(p));
+			ans *= pow32(p, M.get(p));
 		}
 		return ans << twos;
 	}
@@ -85,7 +91,7 @@ public class PFac {
 	public long longValue() {
 		long ans = 1;
 		for (int p : M.keySet()) {
-			ans *= MathLib.pow64(p, M.get(p));
+			ans *= pow64(p, M.get(p));
 		}
 		return ans << twos;
 	}
@@ -93,9 +99,39 @@ public class PFac {
 	public BigInteger bigValue() {
 		BigInteger ans = BigInteger.ONE;
 		for (int p : M.keySet()) {
-			ans = ans.multiply(MathLib.big(p).pow(M.get(p)));
+			ans = ans.multiply(BigInteger.valueOf(p).pow(M.get(p)));
 		}
 		return ans.shiftLeft(twos);
+	}
+
+	public BigInteger totient() {
+		BigInteger ans = bigValue();
+		if (twos > 0) {
+			ans = ans.divide(BigInteger.valueOf(2));
+		}
+		for (int p : M.keySet()) {
+			ans = ans.multiply(BigInteger.valueOf(p - 1));
+			ans = ans.divide(BigInteger.valueOf(p));
+		}
+		return ans;
+	}
+
+	public Set<Long> divisors() {
+		TreeSet<Long> S = new TreeSet<Long>();
+		S.add(1L);
+		for (int i = 1; i <= twos; i++) {
+			S.add(1L << i);
+		}
+		for (int p : M.keySet()) {
+			for (int i = 0; i < M.get(p); i++) {
+				TreeSet<Long> T = new TreeSet<Long>();
+				for (long s : S) {
+					T.add(s * p);
+				}
+				S.addAll(T);
+			}
+		}
+		return S;
 	}
 
 	public String toString() {
