@@ -2,7 +2,7 @@ package s000;
 
 import java.util.TreeSet;
 
-import old.Lib;
+import core.MathLib;
 import core.Ratio;
 
 public class P093 {
@@ -55,7 +55,7 @@ public class P093 {
 	static void genAll(Ratio[] r) {
 		int[] p = { 0, 1, 2, 3 };
 		for (int i = 0; i < 24; i++) {
-			int[] is = Lib.perm(p, i, 4);
+			int[] is = perm(p, i, 4);
 			Ratio[] s = { r[is[0]], r[is[1]], r[is[2]], r[is[3]] };
 			gen(s);
 		}
@@ -100,5 +100,23 @@ public class P093 {
 		}
 
 		System.out.printf("%d%d%d%d\n", bestA, bestB, bestC, bestD);
+	}
+
+	static int[] perm(int[] a, int i, int length) {
+		if (i == 0) {
+			return a;
+		}
+		int k = MathLib.fac32(length - 1);
+		int index = i / k;
+
+		int[] b = new int[length - 1];
+		System.arraycopy(a, 0, b, 0, index);
+		System.arraycopy(a, index + 1, b, index, length - index - 1);
+		b = perm(b, i - index * k, length - 1);
+
+		int[] c = a.clone();
+		c[0] = c[index];
+		System.arraycopy(b, 0, c, 1, length - 1);
+		return c;
 	}
 }
