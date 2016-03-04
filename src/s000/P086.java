@@ -16,7 +16,6 @@ public class P086 {
 	}
 
 	public static void main(String[] args) {
-		// 1818
 		count = 0;
 		for (int z = 1;; z++) {
 			for (int y = 1; y <= z; y++) {

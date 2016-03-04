@@ -80,7 +80,6 @@ public class P180 {
 			d = d.divide(g);
 		}
 
-		// 285196020571078987
 		System.out.println(n.add(d));
 	}
 }

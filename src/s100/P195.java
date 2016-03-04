@@ -6,7 +6,6 @@ import core.NTLib;
 
 public class P195 {
 	public static void main(String[] args) {
-		// 75085391
 		int r = 1053779;
 
 		int u = (int) (Math.sqrt(12) * r);

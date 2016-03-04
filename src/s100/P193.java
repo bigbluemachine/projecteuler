@@ -1,7 +1,6 @@
 package s100;
 
 public class P193 {
-	// 684465067343069
 	public static void main(String[] args) {
 		int m = 1 << 25;
 		int[] a = new int[m];

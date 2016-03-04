@@ -72,7 +72,7 @@ public class MathLib {
 	// Possibly overflows for large b or m.
 	public static long modExp(long b, long e, long m) {
 		long ans = 1;
-		for (long i = 1; i <= e; i <<= 1, b = (b * b) % m) {
+		for (long i = 1; i <= e; i += i, b = (b * b) % m) {
 			if ((e & i) > 0) {
 				ans = (ans * b) % m;
 			}

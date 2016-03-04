@@ -5,6 +5,7 @@ import static core.MathLib.gcd32;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class NTLib {
@@ -169,5 +170,27 @@ public class NTLib {
 			return false;
 		}
 		return true;
+	}
+
+	public static LinkedList<Integer>[] batchFactor(int start, int count) {
+		@SuppressWarnings("unchecked")
+		LinkedList<Integer>[] a = new LinkedList[count];
+		for (int i = 0; i < count; i++) {
+			a[i] = new LinkedList<Integer>();
+		}
+
+		int max = start + count - 1;
+		for (int d = 1; d <= max; d++) {
+			int p = start - (start % d);
+			if (p < start) {
+				p += d;
+			}
+
+			for (; p <= max; p += d) {
+				a[p - start].add(d);
+			}
+		}
+
+		return a;
 	}
 }

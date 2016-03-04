@@ -77,7 +77,6 @@ public class P167 {
 	}
 
 	public static void main(String[] args) {
-		// 3916160068885
 		long sum = 0;
 		for (int n = 2; n <= 10; n++) {
 			process(2, n);

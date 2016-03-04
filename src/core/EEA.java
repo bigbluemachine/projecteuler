@@ -53,13 +53,20 @@ public class EEA {
 		return BigInteger.ZERO;
 	}
 
-	// Chinese remainder theorem.
-	public static BigInteger crt(long a1, long m1, long a2, long m2) {
-		BigInteger b1 = inv(m2, m1);
-		BigInteger b2 = inv(m1, m2);
-		BigInteger M = big(m1).multiply(big(m2));
-		BigInteger N = big(a1).multiply(b1.multiply(big(m2)));
-		BigInteger O = big(a2).multiply(b2.multiply(big(m1)));
-		return N.add(O).mod(M);
+	public static BigInteger crt(long m1, long r1, long m2, long r2) {
+		if (r2 < r1) {
+			return crt(m2, r2, m1, r1);
+		}
+		long g = MathLib.gcd64(m1, m2);
+		if ((r2 - r1) % g > 0) {
+			return BigInteger.ZERO;
+		}
+		long n1 = m1 / g;
+		long n2 = m2 / g;
+		long z = (r2 - r1) / g;
+		BigInteger j = EEA.inv(n1, n2);
+		BigInteger lcm = big(m1).multiply(big(m2)).divide(big(g));
+		BigInteger ans = j.multiply(big(z)).multiply(big(m1)).add(big(r1));
+		return ans.mod(lcm);
 	}
 }
