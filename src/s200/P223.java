@@ -32,7 +32,7 @@ public class P223 {
 		return V.size();
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		M = 25000000;
 
 		long ans = 0;

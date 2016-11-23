@@ -35,10 +35,7 @@ public class P255 {
 	static int D;
 	static long X;
 
-	public static void main(String[] args) throws Exception {
-		// 5 digits = 3.2102888889
-		// 14 digits = 4.4474011180
-
+	public static void main(String[] args) {
 		D = 14;
 		X = D % 2 == 0 ? 7 * MathLib.pow64(10, (D - 2) / 2) : 2 * MathLib.pow64(10, (D - 1) / 2);
 

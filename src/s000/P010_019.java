@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import core.Euler;
 import core.IOLib;
 import core.MathLib;
 import core.NTLib;
@@ -19,7 +18,7 @@ public class P010_019 {
 		for (int p : ps) {
 			ans += p;
 		}
-		Euler.printAnswer(10, ans);
+		System.out.println(ans);
 	}
 
 	static void p011() {
@@ -49,7 +48,7 @@ public class P010_019 {
 				ans = Math.max(ans, a[i - 3][j] * a[i - 2][j] * a[i - 1][j] * a[i][j]);
 			}
 		}
-		Euler.printAnswer(11, ans);
+		System.out.println(ans);
 	}
 
 	static void p012() {
@@ -68,7 +67,7 @@ public class P010_019 {
 				break;
 			}
 		}
-		Euler.printAnswer(12, ans);
+		System.out.println(ans);
 	}
 
 	static void p013() {
@@ -78,7 +77,7 @@ public class P010_019 {
 			ans = ans.add(new BigInteger(in.nextLine()));
 		}
 		IOLib.close(in);
-		Euler.printAnswer(13, ans.toString().substring(0, 10));
+		System.out.println(ans.toString().substring(0, 10));
 	}
 
 	static void p014() {
@@ -100,7 +99,7 @@ public class P010_019 {
 				ans = i;
 			}
 		}
-		Euler.printAnswer(14, ans);
+		System.out.println(ans);
 	}
 
 	static void p015() {
@@ -114,12 +113,12 @@ public class P010_019 {
 				M[i][j] = M[i - 1][j] + M[i][j - 1];
 			}
 		}
-		Euler.printAnswer(15, M[n - 1][n - 1]);
+		System.out.println(M[n - 1][n - 1]);
 	}
 
 	static void p016() {
 		BigInteger n = BigInteger.valueOf(2).pow(1000);
-		Euler.printAnswer(16, MathLib.digitSum(n));
+		System.out.println(MathLib.digitSum(n));
 	}
 
 	static void p017() {
@@ -127,7 +126,7 @@ public class P010_019 {
 		for (int i = 1; i <= 1000; i++) {
 			ans += letters(i);
 		}
-		Euler.printAnswer(17, ans);
+		System.out.println(ans);
 	}
 
 	static void p018() {
@@ -145,7 +144,7 @@ public class P010_019 {
 			}
 		}
 		IOLib.close(in);
-		Euler.printAnswer(18, best(0, 0, a, f));
+		System.out.println(best(0, 0, a, f));
 	}
 
 	static void p019() {
@@ -171,7 +170,7 @@ public class P010_019 {
 				}
 			}
 		}
-		Euler.printAnswer(19, ans);
+		System.out.println(ans);
 	}
 
 	public static void main(String[] args) {

@@ -25,10 +25,6 @@ public class P124 {
 			}
 			return Integer.compare(n, q.n);
 		}
-
-		public String toString() {
-			return n + " " + r;
-		}
 	}
 
 	public static void main(String[] args) {
@@ -37,7 +33,7 @@ public class P124 {
 		for (int i = 1; i <= 100000; i++) {
 			PFac pf = PFac.make(i, ps);
 			int r = pf.twos > 0 ? 2 : 1;
-			for (int p : pf.M.keySet()) {
+			for (long p : pf.M.keySet()) {
 				r *= p;
 			}
 			qs[i - 1] = new Q(i, r);

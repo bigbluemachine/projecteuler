@@ -2,8 +2,9 @@ package s000;
 
 import java.util.TreeSet;
 
-import core.MathLib;
+import core.ArrayLib;
 import core.NTLib;
+import core.Perm;
 
 public class P049 {
 	public static void main(String[] args) {
@@ -14,8 +15,10 @@ public class P049 {
 				continue;
 			}
 			int[] a = toArray(i);
-			for (int j = 1; j < 24; j++) {
-				int[] b = perm(a, j, 4);
+			Perm q = new Perm(4);
+			q.next();
+			while (q.hasNext()) {
+				int[] b = ArrayLib.map(a, q.next());
 				int k = b[0] + 10 * b[1] + 100 * b[2] + 1000 * b[3];
 				if (k > i && p[k]) {
 					int l = k + k - i;
@@ -30,21 +33,6 @@ public class P049 {
 
 	static int[] toArray(int n) {
 		return new int[] { n % 10, n / 10 % 10, n / 100 % 10, n / 1000 % 10 };
-	}
-
-	static int[] perm(int[] a, int i, int length) {
-		if (i == 0) {
-			return a;
-		}
-		int k = MathLib.fac32(length - 1);
-		int index = i / k;
-		int[] b = new int[length - 1];
-		System.arraycopy(a, 0, b, 0, index);
-		System.arraycopy(a, index + 1, b, index, length - index - 1);
-		a[0] = a[index];
-		b = perm(b, i - index * k, length - 1);
-		System.arraycopy(b, 0, a, 1, length - 1);
-		return a;
 	}
 
 	static boolean isPerm(int[] a, int[] b) {

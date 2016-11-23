@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
-public class P212TODO {
+public class P212 {
 	static class K {
 		int x, y, z, xx, yy, zz;
 
@@ -42,8 +42,9 @@ public class P212TODO {
 	static final ZComparator Z = new ZComparator();
 
 	static long length(LinkedList<K> C) {
-		if (C.isEmpty())
+		if (C.isEmpty()) {
 			return 0;
+		}
 
 		Collections.sort(C, Y);
 		long total = 0;
@@ -51,10 +52,11 @@ public class P212TODO {
 
 		for (K c : C) {
 			int a = c.y, b = c.yy;
-			if (a > lastY)
+			if (a > lastY) {
 				total += b - a;
-			else if (b > lastY)
+			} else if (b > lastY) {
 				total += b - lastY;
+			}
 			lastY = Math.max(lastY, b);
 		}
 
@@ -62,8 +64,9 @@ public class P212TODO {
 	}
 
 	static long area(LinkedList<K> D) {
-		if (D.isEmpty())
+		if (D.isEmpty()) {
 			return 0;
+		}
 
 		LinkedList<K> C = new LinkedList<K>();
 		C.addAll(D);
@@ -84,11 +87,14 @@ public class P212TODO {
 			lastX = x;
 
 			LinkedList<K> J = new LinkedList<K>();
-			for (K c : I)
-				if (c.xx > x)
+			for (K c : I) {
+				if (c.xx > x) {
 					J.add(c);
-			while (!C.isEmpty() && C.peek().x == x)
+				}
+			}
+			while (!C.isEmpty() && C.peek().x == x) {
 				J.add(C.pop());
+			}
 
 			partial = length(J);
 			I = J;
@@ -115,11 +121,14 @@ public class P212TODO {
 			lastZ = z;
 
 			LinkedList<K> J = new LinkedList<K>();
-			for (K c : I)
-				if (c.zz > z)
+			for (K c : I) {
+				if (c.zz > z) {
 					J.add(c);
-			while (!C.isEmpty() && C.peek().z == z)
+				}
+			}
+			while (!C.isEmpty() && C.peek().z == z) {
 				J.add(C.pop());
+			}
 
 			partial = area(J);
 			I = J;
@@ -129,7 +138,6 @@ public class P212TODO {
 	}
 
 	public static void main(String[] args) {
-		// TODO Slightly over 60s...
 		LinkedList<Integer> S = new LinkedList<Integer>();
 		for (int k = 1; k <= 55; k++) {
 			long x = 300007 * k;
@@ -138,12 +146,14 @@ public class P212TODO {
 			x += 100003;
 			S.add((int) (x % 1000000));
 		}
-		for (int k = 56; k <= 300000; k++)
+		for (int k = 56; k <= 300000; k++) {
 			S.add((S.get(k - 24 - 1) + S.get(k - 55 - 1)) % 1000000);
+		}
 
 		LinkedList<K> C = new LinkedList<K>();
-		for (int i = 0; i < 50000; i++)
+		for (int i = 0; i < 50000; i++) {
 			C.add(new K(S.pop(), S.pop(), S.pop(), S.pop(), S.pop(), S.pop()));
+		}
 
 		System.out.println(volume(C));
 	}

@@ -1,25 +1,26 @@
 package core;
 
-import static core.MathLib.pow32;
-import static core.MathLib.pow64;
-
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class PFac {
 	public int twos;
-	public Map<Integer, Integer> M;
+	public TreeMap<Long, Integer> M;
 
 	public PFac() {
 		twos = 0;
-		M = new TreeMap<Integer, Integer>();
+		M = new TreeMap<Long, Integer>();
 	}
 
-	private PFac(int t, TreeMap<Integer, Integer> m) {
+	public PFac(int... a) {
+		twos = 0;
+		M = new TreeMap<Long, Integer>();
+		multiply(a);
+	}
+
+	private PFac(int t, TreeMap<Long, Integer> m) {
 		twos = t;
 		M = m;
 	}
@@ -58,15 +59,16 @@ public class PFac {
 			if (a[i] == 2) {
 				twos += a[i + 1];
 			} else {
-				M.put(a[i], a[i + 1]);
+				long k = a[i];
+				M.put(k, M.containsKey(k) ? M.get(k) + a[i + 1] : a[i + 1]);
 			}
 		}
 	}
 
 	public PFac multiply(PFac o) {
-		TreeMap<Integer, Integer> N = new TreeMap<Integer, Integer>();
+		TreeMap<Long, Integer> N = new TreeMap<Long, Integer>();
 		N.putAll(M);
-		for (int q : o.M.keySet()) {
+		for (long q : o.M.keySet()) {
 			N.put(q, N.containsKey(q) ? N.get(q) + o.M.get(q) : o.M.get(q));
 		}
 		return new PFac(twos + o.twos, N);
@@ -74,7 +76,7 @@ public class PFac {
 
 	public long divisorCount() {
 		long ans = twos + 1;
-		for (int p : M.keySet()) {
+		for (long p : M.keySet()) {
 			ans *= (M.get(p) + 1);
 		}
 		return ans;
@@ -82,23 +84,23 @@ public class PFac {
 
 	public int intValue() {
 		int ans = 1;
-		for (int p : M.keySet()) {
-			ans *= pow32(p, M.get(p));
+		for (long p : M.keySet()) {
+			ans *= MathLib.pow32(p, M.get(p));
 		}
 		return ans << twos;
 	}
 
 	public long longValue() {
 		long ans = 1;
-		for (int p : M.keySet()) {
-			ans *= pow64(p, M.get(p));
+		for (long p : M.keySet()) {
+			ans *= MathLib.pow64(p, M.get(p));
 		}
 		return ans << twos;
 	}
 
 	public BigInteger bigValue() {
 		BigInteger ans = BigInteger.ONE;
-		for (int p : M.keySet()) {
+		for (long p : M.keySet()) {
 			ans = ans.multiply(BigInteger.valueOf(p).pow(M.get(p)));
 		}
 		return ans.shiftLeft(twos);
@@ -109,20 +111,20 @@ public class PFac {
 		if (twos > 0) {
 			ans = ans.divide(BigInteger.valueOf(2));
 		}
-		for (int p : M.keySet()) {
+		for (long p : M.keySet()) {
 			ans = ans.multiply(BigInteger.valueOf(p - 1));
 			ans = ans.divide(BigInteger.valueOf(p));
 		}
 		return ans;
 	}
 
-	public Set<Long> divisors() {
+	public TreeSet<Long> divisors() {
 		TreeSet<Long> S = new TreeSet<Long>();
 		S.add(1L);
 		for (int i = 1; i <= twos; i++) {
 			S.add(1L << i);
 		}
-		for (int p : M.keySet()) {
+		for (long p : M.keySet()) {
 			for (int i = 0; i < M.get(p); i++) {
 				TreeSet<Long> T = new TreeSet<Long>();
 				for (long s : S) {
@@ -136,7 +138,7 @@ public class PFac {
 
 	public String toString() {
 		String ans = "2^" + twos;
-		for (int p : M.keySet()) {
+		for (long p : M.keySet()) {
 			ans += "*" + p + "^" + M.get(p);
 		}
 		return ans;

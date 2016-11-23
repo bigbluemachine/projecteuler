@@ -32,7 +32,6 @@ public class Equation {
 
 		for (int id : e.coefs.keySet()) {
 			double coef = e.coefs.get(id);
-
 			if (id == this.id) {
 				mul -= m * coef;
 			} else {
@@ -47,11 +46,9 @@ public class Equation {
 
 	public String toString() {
 		String s = String.format("%.3f * x_%d = %.3f", mul, id, ct);
-
 		for (int id : coefs.keySet()) {
 			s += String.format(" + %.3fx_%d", coefs.get(id), id);
 		}
-
 		return s;
 	}
 }

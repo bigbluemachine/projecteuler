@@ -115,7 +115,7 @@ public class P254 {
 		return BEST.sum;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		long ans = 0;
 		for (int i = 1; i <= 150; i++) {
 			long sg = sg(i);

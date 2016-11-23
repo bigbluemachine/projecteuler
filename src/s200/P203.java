@@ -22,11 +22,11 @@ public class P203 {
 				PFac mul = pf[m];
 				PFac div = pf[d];
 				v[2] += mul.twos - div.twos;
-				for (int p : mul.M.keySet()) {
-					v[p] += mul.M.get(p);
+				for (long p : mul.M.keySet()) {
+					v[(int) p] += mul.M.get(p);
 				}
-				for (int p : div.M.keySet()) {
-					v[p] -= div.M.get(p);
+				for (long p : div.M.keySet()) {
+					v[(int) p] -= div.M.get(p);
 				}
 				long prod = 1;
 				boolean sqf = true;

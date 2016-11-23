@@ -8,11 +8,14 @@ public class MillerRabin {
 
 	public static boolean MR32Pass(long n, long k) {
 		int t = Long.numberOfTrailingZeros(k - 1);
-		if ((n = MathLib.modExp(n, (k - 1) >> t, k)) == 1)
+		if ((n = MathLib.modExp(n, (k - 1) >> t, k)) == 1) {
 			return true;
-		for (int i = 1; i < t; i++, n = (n * n) % k)
-			if (n == k - 1)
+		}
+		for (int i = 1; i < t; i++, n = (n * n) % k) {
+			if (n == k - 1) {
 				return true;
+			}
+		}
 		return n == k - 1;
 	}
 

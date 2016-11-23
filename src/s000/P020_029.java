@@ -6,15 +6,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Scanner;
 
-import core.Euler;
 import core.IOLib;
 import core.MathLib;
 import core.NTLib;
+import core.Perm;
 
 public class P020_029 {
 	static void p020() {
 		BigInteger n = MathLib.fac(100);
-		Euler.printAnswer(20, MathLib.digitSum(n));
+		System.out.println(MathLib.digitSum(n));
 	}
 
 	static void p021() {
@@ -26,7 +26,7 @@ public class P020_029 {
 				ans += i;
 			}
 		}
-		Euler.printAnswer(21, ans);
+		System.out.println(ans);
 	}
 
 	static void p022() {
@@ -48,7 +48,7 @@ public class P020_029 {
 			ans += i * k;
 			i++;
 		}
-		Euler.printAnswer(22, ans);
+		System.out.println(ans);
 	}
 
 	static void p023() {
@@ -75,16 +75,20 @@ public class P020_029 {
 				ans += i;
 			}
 		}
-		Euler.printAnswer(23, ans);
+		System.out.println(ans);
 	}
 
 	static void p024() {
-		int[] p = perm(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 999999, 10);
+		Perm p = new Perm(10);
+		int[] v = null;
+		for (int i = 0; i < 1000000; i++) {
+			v = p.next();
+		}
 		String ans = "";
-		for (int i : p) {
+		for (int i : v) {
 			ans += i;
 		}
-		Euler.printAnswer(24, ans);
+		System.out.println(ans);
 	}
 
 	static void p025() {
@@ -97,7 +101,7 @@ public class P020_029 {
 			a = b;
 			b = c;
 		}
-		Euler.printAnswer(25, ans);
+		System.out.println(ans);
 	}
 
 	static void p026() {
@@ -130,7 +134,7 @@ public class P020_029 {
 				ans = i;
 			}
 		}
-		Euler.printAnswer(26, ans);
+		System.out.println(ans);
 	}
 
 	static void p027() {
@@ -153,7 +157,7 @@ public class P020_029 {
 				}
 			}
 		}
-		Euler.printAnswer(27, ans);
+		System.out.println(ans);
 	}
 
 	static void p028() {
@@ -161,7 +165,7 @@ public class P020_029 {
 		for (int k = 3; k <= 1001; k += 2) {
 			ans += 4 * k * k - 6 * (k - 1);
 		}
-		Euler.printAnswer(28, ans);
+		System.out.println(ans);
 	}
 
 	static void p029() {
@@ -171,7 +175,7 @@ public class P020_029 {
 				S.add(BigInteger.valueOf(a).pow(b));
 			}
 		}
-		Euler.printAnswer(29, S.size());
+		System.out.println(S.size());
 	}
 
 	public static void main(String[] args) {
@@ -185,20 +189,5 @@ public class P020_029 {
 		p027();
 		p028();
 		p029();
-	}
-
-	static int[] perm(int[] a, int i, int length) {
-		if (i == 0) {
-			return a;
-		}
-		int k = MathLib.fac32(length - 1);
-		int index = i / k;
-		int[] b = new int[length - 1];
-		System.arraycopy(a, 0, b, 0, index);
-		System.arraycopy(a, index + 1, b, index, length - index - 1);
-		a[0] = a[index];
-		b = perm(b, i - index * k, length - 1);
-		System.arraycopy(b, 0, a, 1, length - 1);
-		return a;
 	}
 }

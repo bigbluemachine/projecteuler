@@ -1,8 +1,5 @@
 package s200;
 
-import static java.lang.Math.min;
-import static java.lang.Math.sqrt;
-
 public class P222 {
 	static <T> T println(T t) {
 		System.out.println(t);
@@ -17,13 +14,13 @@ public class P222 {
 			int i = 0;
 			while (v > 1 << i)
 				i++;
-			return F[last][v] = (int) ((30 + i + sqrt(200 * (last + i + 10))) * 100000);
+			return F[last][v] = (int) ((30 + i + Math.sqrt(200 * (last + i + 10))) * 100000);
 		}
 
 		int best = Integer.MAX_VALUE;
 		for (int i = 0; i < 21; i++)
 			if ((v & (1 << i)) > 0)
-				best = min(best, (int) (sqrt(2e12 * (last + i + 10))) + F(i, v & ~(1 << i)));
+				best = Math.min(best, (int) (Math.sqrt(2e12 * (last + i + 10))) + F(i, v & ~(1 << i)));
 
 		return F[last][v] = best;
 	}
@@ -36,7 +33,7 @@ public class P222 {
 		int best = Integer.MAX_VALUE;
 		int v = (1 << 21) - 1;
 		for (int i = 0; i < 21; i++)
-			best = min(best, (30 + i) * 100000 + F(i, v & ~(1 << i)));
+			best = Math.min(best, (30 + i) * 100000 + F(i, v & ~(1 << i)));
 
 		println(best / 100.0);
 	}

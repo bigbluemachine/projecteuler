@@ -38,7 +38,7 @@ public class P251 {
 		return V.size();
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		M = 110000000;
 
 		int max = (int) Math.ceil((double) M / 6.6); // A reasonable upper bound

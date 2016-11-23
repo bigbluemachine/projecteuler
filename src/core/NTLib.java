@@ -1,7 +1,5 @@
 package core;
 
-import static core.MathLib.gcd32;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,7 +55,7 @@ public class NTLib {
 	}
 
 	// Prime list generated from sieve. n >= 3.
-	public static List<Integer> primeList(int n) {
+	public static ArrayList<Integer> primeList(int n) {
 		boolean[] p = simpleSieve(n);
 		ArrayList<Integer> a = new ArrayList<Integer>();
 
@@ -134,7 +132,7 @@ public class NTLib {
 		for (int i = 2; i * i < n; i++) {
 			if (p[i]) {
 				for (int j = i, k = i * i; k < n; j++, k += i) {
-					int l = gcd32(i, j);
+					int l = MathLib.gcd32(i, j);
 					t[k] = (int) (((long) t[i] * t[j] * l) / t[l]);
 				}
 			}

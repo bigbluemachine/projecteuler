@@ -3,7 +3,6 @@ package s000;
 import java.util.HashSet;
 import java.util.TreeSet;
 
-import core.Euler;
 import core.MathLib;
 import core.NTLib;
 
@@ -21,11 +20,11 @@ public class P030_039 {
 				ans += s;
 			}
 		}
-		Euler.printAnswer(30, ans);
+		System.out.println(ans);
 	}
 
 	static void p031() {
-		Euler.printAnswer(31, ways(200, 200));
+		System.out.println(ways(200, 200));
 	}
 
 	static void p032() {
@@ -48,7 +47,7 @@ public class P030_039 {
 		for (int s : S) {
 			ans += s;
 		}
-		Euler.printAnswer(32, ans);
+		System.out.println(ans);
 	}
 
 	static void p033() {
@@ -68,7 +67,7 @@ public class P030_039 {
 			}
 		}
 		int g = MathLib.gcd32(n, d);
-		Euler.printAnswer(32, d / g);
+		System.out.println(d / g);
 	}
 
 	static void p034() {
@@ -89,7 +88,7 @@ public class P030_039 {
 				ans += i;
 			}
 		}
-		Euler.printAnswer(34, ans);
+		System.out.println(ans);
 	}
 
 	static void p035() {
@@ -111,7 +110,7 @@ public class P030_039 {
 			}
 			ans++;
 		}
-		Euler.printAnswer(35, ans);
+		System.out.println(ans);
 	}
 
 	static void p036() {
@@ -121,7 +120,7 @@ public class P030_039 {
 				ans += i;
 			}
 		}
-		Euler.printAnswer(36, ans);
+		System.out.println(ans);
 	}
 
 	static void p037() {
@@ -139,7 +138,7 @@ public class P030_039 {
 				ans += x;
 			}
 		}
-		Euler.printAnswer(37, ans);
+		System.out.println(ans);
 	}
 
 	static void p038() {
@@ -159,7 +158,7 @@ public class P030_039 {
 				}
 			}
 		}
-		Euler.printAnswer(38, ans);
+		System.out.println(ans);
 	}
 
 	static void p039() {
@@ -184,7 +183,7 @@ public class P030_039 {
 			}
 
 		}
-		Euler.printAnswer(39, ans);
+		System.out.println(ans);
 	}
 
 	public static void main(String[] args) {

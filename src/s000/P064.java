@@ -1,7 +1,5 @@
 package s000;
 
-import static java.lang.Math.sqrt;
-
 import java.util.LinkedList;
 
 public class P064 {
@@ -20,7 +18,7 @@ public class P064 {
 
 	static LinkedList<Integer> sqrtCF(int n) {
 		LinkedList<Integer> seq = new LinkedList<Integer>();
-		double s = sqrt(n);
+		double s = Math.sqrt(n);
 		int k = 0, d = 1, x;
 		do {
 			x = (int) ((k + s) / d);

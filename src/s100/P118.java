@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import core.MathLib;
 import core.MillerRabin;
 import core.NTLib;
+import core.Perm;
 
 public class P118 {
 	static class A {
@@ -22,10 +22,6 @@ public class P118 {
 
 		public int hashCode() {
 			return Arrays.hashCode(a);
-		}
-
-		public String toString() {
-			return Arrays.toString(a);
 		}
 	}
 
@@ -62,7 +58,8 @@ public class P118 {
 		for (int k = 0; k < p.length; k++) {
 			int z = 0;
 			for (int i = 0; i < p[k]; i++) {
-				z = 10 * z + w[j++];
+				z = 10 * z + (w[j] + 1);
+				j++;
 			}
 			if (!isPrime(z)) {
 				return null;
@@ -79,36 +76,17 @@ public class P118 {
 			count = 1;
 			f(9 - last, last);
 		}
-		int max = MathLib.fac32(9);
-		int[] v = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		HashSet<A> T = new HashSet<A>();
-		for (int i = 0; i < max; i++) {
-			int[] w = perm(v, i, 9);
+		Perm q = new Perm(9);
+		while (q.hasNext()) {
+			int[] v = q.next();
 			for (int[] p : P) {
-				A a = process(w, p);
+				A a = process(v, p);
 				if (a != null) {
 					T.add(a);
 				}
 			}
 		}
 		System.out.println(T.size());
-	}
-
-	static int[] perm(int[] a, int i, int length) {
-		if (i == 0) {
-			return a;
-		}
-		int k = MathLib.fac32(length - 1);
-		int index = i / k;
-
-		int[] b = new int[length - 1];
-		System.arraycopy(a, 0, b, 0, index);
-		System.arraycopy(a, index + 1, b, index, length - index - 1);
-		b = perm(b, i - index * k, length - 1);
-
-		int[] c = a.clone();
-		c[0] = c[index];
-		System.arraycopy(b, 0, c, 1, length - 1);
-		return c;
 	}
 }

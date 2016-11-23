@@ -16,18 +16,16 @@ public class ArrayLib {
 		return c;
 	}
 
-	// Does not include to-index!
-	public static int[] slice(int[] a, int from, int to) {
-		int[] b = new int[to - from];
+	public static int[] slice(int[] a, int from, int toExc) {
+		int[] b = new int[toExc - from];
 		System.arraycopy(a, from, b, 0, b.length);
 		return b;
 	}
 
-	// Maps index array to an array.
-	public static int[] map(int[] a, int[] is) {
-		int[] b = new int[is.length];
-		for (int i = 0; i < is.length; i++) {
-			b[i] = a[is[i]];
+	public static int[] map(int[] a, int[] indices) {
+		int[] b = new int[indices.length];
+		for (int i = 0; i < indices.length; i++) {
+			b[i] = a[indices[i]];
 		}
 		return b;
 	}

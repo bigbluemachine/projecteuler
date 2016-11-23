@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class IOLib {
-	// Scanner from filename.
 	public static Scanner scanner(String filename) {
 		try {
 			return new Scanner(new File(filename));
@@ -15,7 +14,6 @@ public class IOLib {
 		}
 	}
 
-	// Exception-free close hack.
 	public static void close(Closeable in) {
 		try {
 			in.close();

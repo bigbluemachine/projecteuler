@@ -2,7 +2,6 @@ package core;
 
 import java.math.BigInteger;
 
-// Extended Euclidean algorithm.
 public class EEA {
 	static BigInteger big(long l) {
 		return BigInteger.valueOf(l);

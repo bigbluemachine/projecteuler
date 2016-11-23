@@ -6,7 +6,7 @@ import java.util.List;
 
 import core.NTLib;
 
-public class P060TODO {
+public class P060 {
 	static int size;
 	static HashMap<Long, Boolean> concat = new HashMap<Long, Boolean>();
 	static Integer[] primes;

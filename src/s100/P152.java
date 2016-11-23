@@ -42,10 +42,6 @@ public class P152 {
 		public int getLPD() {
 			return lpd == -1 ? (lpd = lpd(r.d)) : lpd;
 		}
-
-		public String toString() {
-			return L.toString();
-		}
 	}
 
 	public static int lpd(BigInteger n) {

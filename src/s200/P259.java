@@ -37,10 +37,6 @@ public class P259 {
 			return new F(n * other.d, d * other.n);
 		}
 
-		public String toString() {
-			return n + "/" + d;
-		}
-
 		public int compareTo(F other) {
 			return (int) (n * other.d - d * other.n);
 		}

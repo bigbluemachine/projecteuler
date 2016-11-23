@@ -2,18 +2,16 @@ package s000;
 
 import java.util.Scanner;
 
-import core.Euler;
 import core.IOLib;
 import core.MathLib;
 import core.PList;
 
 public class P000_009 {
-	static void p000() {
-		Euler.printAnswer(0, "Welcome to Project Euler!");
-	}
-
 	static void p001() {
-		Euler.printAnswer(1, 3 * MathLib.tri32(999 / 3) + 5 * MathLib.tri32(999 / 5) - 15 * MathLib.tri32(999 / 15));
+		int ans = 3 * MathLib.tri32(999 / 3);
+		ans += 5 * MathLib.tri32(999 / 5);
+		ans -= 15 * MathLib.tri32(999 / 15);
+		System.out.println(ans);
 	}
 
 	static void p002() {
@@ -27,7 +25,7 @@ public class P000_009 {
 			a = b;
 			b += c;
 		}
-		Euler.printAnswer(2, ans);
+		System.out.println(ans);
 	}
 
 	static void p003() {
@@ -39,7 +37,8 @@ public class P000_009 {
 				n /= p;
 			}
 		}
-		Euler.printAnswer(3, Math.max(ans, n));
+		ans = Math.max(ans, n);
+		System.out.println(ans);
 	}
 
 	static void p004() {
@@ -55,7 +54,7 @@ public class P000_009 {
 				ans = Math.max(ans, i * j);
 			}
 		}
-		Euler.printAnswer(4, ans);
+		System.out.println(ans);
 	}
 
 	static void p005() {
@@ -63,7 +62,7 @@ public class P000_009 {
 		for (int i = 1; i <= 20; i++) {
 			ans = (ans * i) / MathLib.gcd64(ans, i);
 		}
-		Euler.printAnswer(5, ans);
+		System.out.println(ans);
 	}
 
 	static void p006() {
@@ -72,7 +71,7 @@ public class P000_009 {
 			a += i;
 			b += i * i;
 		}
-		Euler.printAnswer(6, a * a - b);
+		System.out.println(a * a - b);
 	}
 
 	static void p007() {
@@ -80,7 +79,7 @@ public class P000_009 {
 		while (p.ps.size() < 10001) {
 			p.expand();
 		}
-		Euler.printAnswer(7, p.ps.get(10000));
+		System.out.println(p.ps.get(10000));
 	}
 
 	static void p008() {
@@ -102,7 +101,7 @@ public class P000_009 {
 			}
 			ans = Math.max(ans, test);
 		}
-		Euler.printAnswer(8, ans);
+		System.out.println(ans);
 	}
 
 	static void p009() {
@@ -116,11 +115,10 @@ public class P000_009 {
 				}
 			}
 		}
-		Euler.printAnswer(9, ans);
+		System.out.println(ans);
 	}
 
 	public static void main(String[] args) {
-		p000();
 		p001();
 		p002();
 		p003();

@@ -6,7 +6,7 @@ import core.IOLib;
 
 public class P081 {
 	public static void main(String[] args) {
-		Scanner in = IOLib.scanner("data/081_matrix.txt");
+		Scanner in = IOLib.scanner("data/081.txt");
 		int[][] M = new int[80][80];
 		for (int i = 0; i < 80; i++) {
 			String[] s = in.nextLine().split(",");
